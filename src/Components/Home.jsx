@@ -28,7 +28,7 @@ export default function Home() {
                                             <h4>{job.title}</h4>
                                             <div className="crud">
                                                 <Link to={`/jobsdetails/${job.id}`}>Info</Link>
-                                                <Link onClick={edit} to={`/jobs-add/${job.id}`}>Edit</Link>
+                                                <Link onClick={edit} to={`/jobs-edit/${job.id}`}>Edit</Link>
                                                 <Link onClick={()=>deleteJob(job.id)}>Delete</Link>
                                             </div>
                                         </div>

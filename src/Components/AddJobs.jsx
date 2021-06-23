@@ -1,8 +1,7 @@
-import React,{ useState,useContext } from 'react'
-import { useDispatch } from 'react-redux'
+import React,{ useState,useContext,useRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { jobsAction } from '../Store/actions/actions';
 import { toast } from 'react-toastify';
-import { editJob } from '../Context';
 
 
 
@@ -12,7 +11,7 @@ export default function AddJobs() {
     const [salary, setSalary] = useState("")
     const [category, setCategory] = useState("")
     const dispatch = useDispatch()
-    const {edit,setEdit} = useContext(editJob)
+    
     const send = (e) => {
         e.preventDefault();
         if (!title && !company && !salary && !category) {
@@ -34,18 +33,17 @@ export default function AddJobs() {
     
     return (
         <div className="add-job_block">
-            
             <form className="add-job_form">
                 <label>Job title</label>
                 <input className="form-control" type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
                 <label>Job Company</label>
-                <input className="form-control" type="text" value={company} onChange={(e) => setCompany(e.target.value)} />
+                <input className="form-control"  type="text" value={company} onChange={(e) => setCompany(e.target.value)} />
                 <label>Job Salary</label>
-                <input className="form-control" type="text" value={salary} onChange={(e) => setSalary(e.target.value)} />
+                <input className="form-control"  type="text" value={salary} onChange={(e) => setSalary(e.target.value)} />
                 <label>Job Category</label>
-                <input className="form-control" type="text" value={category} onChange={(e) => setCategory(e.target.value)} />
-                <button onClick={send} className="add-btn btn btn-primary">{!edit ? "Add" : "Update"}</button>
-                {edit && <button className="btn btn-primary-outline my-3" onClick={()=>setEdit(false)}>Cancel</button>}
+                <input className="form-control"  type="text" value={category} onChange={(e) => setCategory(e.target.value)} />
+                <button onClick={send} className="add-btn btn btn-primary">Add</button>
+                
             </form>
         </div>
     )
