@@ -1,5 +1,6 @@
 export const ADD_JOB = "ADD_JOB"
 export const DELETE_JOB = "DELETE_JOB"
+export const EDIT_JOB = "EDIT_JOB"
 
 export const jobsAction = (payload)=>{
     return {
@@ -10,6 +11,12 @@ export const jobsAction = (payload)=>{
 export const jobDeleteAction = (payload)=>{
     return {
         type : DELETE_JOB,
+        payload
+    }
+}
+export const jobEditAction = (payload)=>{
+    return{
+        type : EDIT_JOB,
         payload
     }
 }

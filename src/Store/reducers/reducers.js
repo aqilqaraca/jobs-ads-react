@@ -1,4 +1,4 @@
-import { ADD_JOB,DELETE_JOB } from "../actions/actions";
+import { ADD_JOB,DELETE_JOB,EDIT_JOB } from "../actions/actions";
 const initialValue = {
     jobs : [
         {id:1, title : "Front end developer", company : "Pasa Bank",salary : "1500",category : "it" , time : new Date().toLocaleDateString()},
@@ -12,7 +12,18 @@ export const jobsReducer = (state = initialValue,{type,payload}) =>{
             return {jobs : state.jobs.concat(payload)}
         case DELETE_JOB:
             const deletedJobs = state.jobs.filter(n=>n.id !== payload)
-            return {jobs : deletedJobs}    
+            return {jobs : deletedJobs}
+        case EDIT_JOB:
+            const newJobs = [...state.jobs]
+            const job = newJobs.filter(job=>job.id === parseInt(payload.id))
+            job[0].title = payload.title
+            job[0].company = payload.company
+            job[0].salary = payload.salary
+            job[0].category = payload.category
+            return {
+                ...state,
+                jobs : newJobs
+            } 
        default:
            return state
    }
