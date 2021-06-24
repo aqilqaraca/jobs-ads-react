@@ -21,8 +21,8 @@ export default function Home() {
             <div className="col-12">
                 <div className="row">
                     {
-                        jobs.map(job => (
-                                <div key={job.id} className="col-6">
+                    jobs.slice(jobs.length-4,jobs.length).map(job => (
+                        <div key={job.id} className="col-6">
                                     <div className="jobs-block">
                                         <div className="job-block-header">
                                             <h4>{job.title}</h4>
@@ -38,6 +38,7 @@ export default function Home() {
                                     </div>
                                 </div>
                         ))
+                        
                     }
 
                 </div>
