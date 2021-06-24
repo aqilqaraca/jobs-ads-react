@@ -1,6 +1,7 @@
 import React from 'react'
-import {useContext}from 'react'
-import { useSelector,useDispatch } from 'react-redux'
+import { useState } from 'react'
+import { useContext } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { editJob } from '../Context'
 import { jobDeleteAction } from '../Store/actions/actions'
@@ -8,19 +9,27 @@ import { jobDeleteAction } from '../Store/actions/actions'
 export default function Jobs() {
     const { jobs } = useSelector(state => state.jobs)
     const dispatch = useDispatch()
-    const {setEdit} = useContext(editJob)
-    const deleteJob = (id)=>{
+    const { setEdit } = useContext(editJob)
+    const deleteJob = (id) => {
         dispatch(jobDeleteAction(id))
     }
-    const edit = ()=>{
+    const edit = () => {
         setEdit(true)
     }
+    const [search,setSearch] = useState("")
+    const filteredJob = jobs.filter(job=>job.title.slice(0,search.length).toLowerCase()==search)
+
     return (
         <div>
-        <div className="col-12">
-            <div className="row">
-                {
-                    jobs.map(job => (
+
+            <div className="col-12">
+                <div className="input-group mb-3">
+                    <input type="text" value={search} onChange={(e)=>setSearch(e.target.value)} className="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1"></input>
+                </div>
+                {search}
+                 <div className="row">
+                    {!search ?
+                        jobs.map(job => (
                             <div key={job.id} className="col-6">
                                 <div className="jobs-block">
                                     <div className="job-block-header">
@@ -28,19 +37,38 @@ export default function Jobs() {
                                         <div className="crud">
                                             <Link to={`/jobsdetails/${job.id}`}>Info</Link>
                                             <Link onClick={edit} to={`/jobs-edit/${job.id}`}>Edit</Link>
-                                            <Link onClick={()=>deleteJob(job.id)}>Delete</Link>
+                                            <Link onClick={() => deleteJob(job.id)}>Delete</Link>
                                         </div>
                                     </div>
                                     <h3>{job.company}</h3>
                                     <i className="fa fa-clock-o"></i><span>{job.time}</span>
-                                    <i className="fa fa-list-alt"></i><span style={{textTransform:"uppercase"}}>{job.category}</span>
+                                    <i className="fa fa-list-alt"></i><span style={{ textTransform: "uppercase" }}>{job.category}</span>
                                 </div>
                             </div>
-                    ))
-                }
+                        ))
+                        : 
+                        filteredJob.map(job => (
+                            <div key={job.id} className="col-6">
+                                <div className="jobs-block">
+                                    <div className="job-block-header">
+                                        <h4>{job.title}</h4>
+                                        <div className="crud">
+                                            <Link to={`/jobsdetails/${job.id}`}>Info</Link>
+                                            <Link onClick={edit} to={`/jobs-edit/${job.id}`}>Edit</Link>
+                                            <Link onClick={() => deleteJob(job.id)}>Delete</Link>
+                                        </div>
+                                    </div>
+                                    <h3>{job.company}</h3>
+                                    <i className="fa fa-clock-o"></i><span>{job.time}</span>
+                                    <i className="fa fa-list-alt"></i><span style={{ textTransform: "uppercase" }}>{job.category}</span>
+                                </div>
+                            </div>
+                        ))
 
+                    }
+
+                </div>
             </div>
         </div>
-    </div>
     )
 }
