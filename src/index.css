@@ -101,7 +101,7 @@
   border-radius: 10px;
 }
 .job-block-header a:nth-child(2) {
-  background-color: #00ffd5;
+  background-color: #ff9100;
   color: #fff;
   text-decoration: none;
   padding: 5px 15px;
@@ -135,5 +135,8 @@
 }
 .btn-primary-outline{
   border: 1px solid #0d6efd;
+}
+.menu__list li a.active{
+  color: #ff9100;
 }
 

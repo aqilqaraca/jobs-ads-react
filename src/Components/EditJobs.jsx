@@ -3,6 +3,7 @@ import { useParams } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { jobEditAction } from '../Store/actions/actions'
+import { toast } from 'react-toastify'
 
 export default function EditJobs() {
     const title_ref = useRef()
@@ -26,6 +27,7 @@ export default function EditJobs() {
         const salary = salary_ref.current.value
         const category =  category_ref.current.value
         dispatch(jobEditAction({id, title,company,category,salary}))
+        toast.success("job edited")
     }
     return (
         <div className="add-job_block">

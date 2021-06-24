@@ -3,7 +3,10 @@ const initialValue = {
     jobs : [
         {id:1, title : "Front end developer", company : "Pasa Bank",salary : "1500",category : "it" , time : new Date().toLocaleDateString()},
         {id:2,title : "Back end developer" , company : "Blue Planet",salary : "2000",category : "it",time : new Date().toLocaleDateString()},
-        {id : 3,title : "Designer",company : "Baku Design Academy",salary : "700",category : "Design",time : new Date().toLocaleDateString()}
+        {id : 3,title : "Designer",company : "Baku Design Academy",salary : "700",category : "Design",time : new Date().toLocaleDateString()},
+        {id : 4,title : "Designer",company : "Baku Design Academy",salary : "700",category : "Design",time : new Date().toLocaleDateString()},
+        {id : 5,title : "Designer",company : "Baku Design Academy",salary : "700",category : "Design",time : new Date().toLocaleDateString()},
+        {id : 6,title : "Designer",company : "Baku Design Academy",salary : "700",category : "Design",time : new Date().toLocaleDateString()}
     ]
 }
 export const jobsReducer = (state = initialValue,{type,payload}) =>{
